@@ -1,0 +1,6 @@
+FROM openjdk:17
+RUN mkdir /usr/app
+WORKDIR "/usr/app"
+ARG JAR_FILE=./target/LojaGenerica-0.0.1-SNAPSHOT.jar
+ADD ./target/LojaGenerica-0.0.1-SNAPSHOT.jar /usr/app/app.jar
+CMD ["java","-jar","/usr/app/app.jar"]
