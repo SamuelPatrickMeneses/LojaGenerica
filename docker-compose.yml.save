@@ -1,0 +1,8 @@
+version: "1.25.0"
+
+services:
+	localstorage:
+			image:mysql:latest
+		environment:
+			MYSQL_ROOT_PASSWORD: 123456T
+

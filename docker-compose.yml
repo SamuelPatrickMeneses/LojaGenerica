@@ -1,0 +1,35 @@
+#networks:
+# main:
+#    external: true
+services:
+  localstorage:
+    image: mysql
+    #ports:
+    #  - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456T
+    volumes:
+      - "/var/lib/mysql:${DB}"
+#    networks:
+#      - main
+  web:
+    build: ./back-and
+    ports:
+      - "8080:8080"
+    environment: 
+      URL_DB: jdbc:mysql://localstorage:3306/lojagenerica
+      USER_DB: root
+      DDL_AUTO: create-drop
+      REMOTE_SECRET: 123456T
+    depends_on: 
+      - localstorage
+    links:
+      - localstorage:localstorage
+    volumes:
+      - ${APP_IN}:${APP_OUT}
+#    networks:
+#      - main
+#    external_links:
+#      - localstorage:localstorage
+    
+    
